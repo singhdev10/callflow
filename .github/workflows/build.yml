@@ -18,14 +18,16 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Gradle ready karo
-        uses: android-actions/setup-android@v3
+      - name: Gradle 8.5 set karo
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.5'
 
-      - name: Gradle wrapper banao
+      - name: Wrapper banao
         run: gradle wrapper --gradle-version 8.5
 
       - name: APK banao
-        run: ./gradlew assembleDebug --no-daemon
+        run: gradle assembleDebug --no-daemon
 
       - name: APK upload karo
         uses: actions/upload-artifact@v4
